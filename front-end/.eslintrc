@@ -1,0 +1,90 @@
+{
+    "extends": [
+      "airbnb",
+      "react-app",
+      "prettier",
+      "plugin:react/recommended",
+      "stylelint"
+    ],
+    "root": true,
+    "plugins": [
+      "import",
+      "react",
+      "prettier",
+      "simple-import-sort"
+    ],
+    "settings": {
+      "react": {
+        "version": "16.8"
+      },
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": [
+            "node_modules",
+            "/"
+          ]
+        }
+      }
+    },
+    "env": {
+      "es6": true,
+      "jest": true,
+      "browser": true,
+      "node": true
+    },
+    "globals": {
+      "DEBUG": false
+    },
+    "rules": {
+      "no-param-reassign": 0,
+      "semi": [
+        2,
+        "always"
+      ],
+      "import/no-named-as-default": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "import/no-extraneous-dependencies": 0,
+      "import/no-unresolved": 0,
+      "import/extensions": 0,
+      "import/prefer-default-export": 0,
+      "import/first": 0,
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error"
+    },
+    "overrides": [
+      {
+        "files": ["**/*.js", "**/*.ts", "**/*.tsx"],
+        "rules": {
+          "simple-import-sort/imports": [
+            "error",
+            {
+              "groups": [
+                // `react` first, `next` second, then packages starting with a character
+                ["^react$", "^next", "^[a-z]"],
+                // Packages starting with `@`
+                ["^@"],
+                // Packages starting with `~`
+                ["^~"],
+                // Imports starting with `../`
+                ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+                // Imports starting with `./`
+                ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                // Style imports
+                ["^.+\\.s?css$"],
+                // Side effect imports
+                ["^\\u0000"]
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
