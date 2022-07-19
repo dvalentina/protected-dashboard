@@ -2,16 +2,15 @@ import React from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 
 import ExamCard from './ExamCard.tsx';
-import LoginPage from './LoginPage.tsx';
-
+import SigninPage from './SigninPage.tsx';
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Link to="/exam">Find out your exam result!</Link>} />
-      <Route path='/login' element={<LoginPage />} />
-      <Route path='/exam' element={<ExamCard />} />
-      <Route path='*' element={<p>Nothing here</p>} />
+      <Route path="/" element={<Link to="/exam">Find out your exam result!</Link>} />
+      <Route path="/signin" element={<SigninPage />} />
+      <Route path="/exam" element={<ExamCard />} />
+      <Route path="*" element={<p>Nothing here</p>} />
     </Routes>
   );
 }
