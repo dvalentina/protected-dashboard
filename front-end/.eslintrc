@@ -61,7 +61,13 @@
       "sort-imports": "off",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "no-restricted-imports": [
+        "error",
+        {
+          "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        }
+      ]
     },
     "overrides": [
       {
