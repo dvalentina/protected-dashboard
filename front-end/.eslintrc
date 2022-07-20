@@ -6,6 +6,10 @@
       "plugin:react/recommended",
       "stylelint"
     ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
     "root": true,
     "plugins": [
       "import",
@@ -67,7 +71,8 @@
         {
           "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
         }
-      ]
+      ],
+      "node/no-missing-import": "off"
     },
     "overrides": [
       {
@@ -95,6 +100,12 @@
             }
           ]
         }
+      },
+      {
+        "files": ["*.ts", "*.tsx"],
+        "rules": {
+            "no-undef": "off"
+        }
       }
-    ]
+    ]  
   }
