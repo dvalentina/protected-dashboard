@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
@@ -9,11 +10,15 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-function SigninPage() {
+interface ISignin {
+  signin: () => void;
+}
+
+function SigninPage({ signin }: ISignin) {
   return (
     <Container maxWidth="xs">
       <SigninHeader />
-      <SigninForm />
+      <SigninForm signin={signin} />
     </Container>
   );
 }
@@ -38,12 +43,27 @@ function SigninHeader() {
   );
 }
 
-function SigninForm() {
+function SigninForm({ signin }: ISignin) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // @ts-ignore
+  const from = location.state?.from?.pathname || '/';
+
   return (
     <Box component="form" sx={{ mt: 1 }}>
       <TextField required id="email" label="Email Adress" variant="outlined" margin="normal" fullWidth />
       <TextField required id="password" label="Password" type="password" variant="outlined" margin="normal" fullWidth />
-      <Button variant="contained" type="submit" sx={{ mt: 3 }} fullWidth>
+      <Button
+        variant="contained"
+        type="submit"
+        sx={{ mt: 3 }}
+        onClick={() => {
+          signin();
+          navigate(from, { replace: true });
+        }}
+        fullWidth
+      >
         Sign In
       </Button>
     </Box>
