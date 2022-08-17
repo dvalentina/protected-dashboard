@@ -1,5 +1,6 @@
 export interface TypedResponse extends Response {
   message: string;
+  accessToken: string;
 }
 
 export interface AuthForm {

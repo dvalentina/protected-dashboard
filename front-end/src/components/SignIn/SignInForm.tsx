@@ -1,51 +1,40 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { purple } from '@mui/material/colors';
-import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 
-interface ISignin {
-  signin: (username: string, password: string) => void;
-}
+import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
+import { TypedResponse } from '../../types';
 
-function SigninPage({ signin }: ISignin) {
-  return (
-    <Container maxWidth="xs">
-      <SigninHeader />
-      <SigninForm signin={signin} />
-    </Container>
-  );
-}
-
-function SigninHeader() {
-  return (
-    <Box
-      sx={{
-        mt: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Avatar sx={{ bgcolor: purple[500], m: 1 }}>
-        <LockOutlinedIcon />
-      </Avatar>
-      <Typography variant="h5" component="h1">
-        Sign in
-      </Typography>
-    </Box>
-  );
-}
-
-function SigninForm({ signin }: ISignin) {
+function SignInForm() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const signIn = (email: string, password: string) => {
+    const data = {
+      email,
+      password,
+    };
+
+    fetch(`${API_URL}/auth/`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      credentials: 'include',
+      headers: { 'content-type': 'application/json' },
+    })
+      .then(async (response) => {
+        const json = await (response.json() as Promise<TypedResponse>);
+
+        if (!response.ok) {
+          throw Error(json.message || response.statusText);
+        }
+
+        window.localStorage.setItem(JWT_TOKEN_NAME, json.accessToken);
+      })
+      .catch((error) => console.log(error.message));
+  };
 
   const [formData, setFormData] = useState({
     email: '',
@@ -95,7 +84,7 @@ function SigninForm({ signin }: ISignin) {
         type="submit"
         sx={{ mt: 3 }}
         onClick={() => {
-          signin(formData.email, formData.password);
+          signIn(formData.email, formData.password);
           navigate(from, { replace: true });
         }}
         fullWidth
@@ -106,4 +95,4 @@ function SigninForm({ signin }: ISignin) {
   );
 }
 
-export default SigninPage;
+export default SignInForm;

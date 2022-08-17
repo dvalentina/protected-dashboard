@@ -3,14 +3,14 @@
     {
       "id": 1,
       "userId": 1,
-      "result": 7,
+      "score": 7,
       "max": 10,
       "passed": true
     },
     {
       "id": 2,
       "userId": 2,
-      "result": 2,
+      "score": 2,
       "max": 10,
       "passed": false
     }

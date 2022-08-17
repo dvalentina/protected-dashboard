@@ -1,15 +1,17 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
+import { JWT_TOKEN_NAME } from '../constants/constants';
+
 interface IRequireAuth {
-  auth: boolean;
   children: JSX.Element;
 }
 
-function RequireAuth({ auth, children }: IRequireAuth) {
+function RequireAuth({ children }: IRequireAuth) {
+  const token = window.localStorage.getItem(JWT_TOKEN_NAME);
   const location = useLocation();
 
-  if (!auth) {
+  if (!token) {
     return <Navigate to="/signin" state={{ from: location }} replace />;
   }
 

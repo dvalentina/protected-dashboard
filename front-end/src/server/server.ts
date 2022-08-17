@@ -43,8 +43,6 @@ function userExists({ email, password }: AuthForm) {
 server.post('/auth/', (req, res) => {
   const { email, password } = req.body;
 
-  console.log(req.body);
-
   if (userExists({ email, password }) === false) {
     const status = 401;
 

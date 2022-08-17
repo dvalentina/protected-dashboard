@@ -4,33 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import { blue, grey } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
-interface IDashboard {
-  signout: () => void;
-}
+import { JWT_TOKEN_NAME } from '../../constants/constants';
 
-function Dashboard({ signout }: IDashboard) {
-  return (
-    <>
-      <Header signout={signout} />
-      <ExamCard />
-    </>
-  );
-}
-
-function Header({ signout }: IDashboard) {
+function DashboardHeader() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -38,6 +23,11 @@ function Header({ signout }: IDashboard) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const signOut = () => {
+    window.localStorage.removeItem(JWT_TOKEN_NAME);
+    navigate('/signin');
   };
 
   return (
@@ -56,8 +46,7 @@ function Header({ signout }: IDashboard) {
         <MenuItem
           onClick={() => {
             handleClose();
-            signout();
-            navigate('/');
+            signOut();
           }}
         >
           Sign out
@@ -67,25 +56,4 @@ function Header({ signout }: IDashboard) {
   );
 }
 
-function ExamCard() {
-  return (
-    <Card sx={{ mt: 3, ml: 2, maxWidth: 275 }}>
-      <CardContent>
-        <Typography component="h2" variant="h6" color={blue[700]} gutterBottom>
-          Exam result
-        </Typography>
-        <Typography component="p" variant="caption" color={grey[700]} gutterBottom>
-          Your score is
-        </Typography>
-        <Typography component="p" variant="h4">
-          9 of 10
-        </Typography>
-        <Typography component="p" variant="overline" color={grey[700]}>
-          PASSED
-        </Typography>
-      </CardContent>
-    </Card>
-  );
-}
-
-export default Dashboard;
+export default DashboardHeader;
