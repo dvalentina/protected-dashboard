@@ -3,6 +3,9 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
+import { API_URL } from '../constants/constants';
+import { TypedResponse } from '../types';
+
 import Dashboard from './Dashboard';
 import RequireAuth from './RequireAuth';
 import SigninPage from './SigninPage';
@@ -10,8 +13,28 @@ import SigninPage from './SigninPage';
 function App() {
   const [auth, setAuth] = useState(false);
 
-  const signin = () => {
+  const signin = (email: string, password: string) => {
     setAuth(true);
+
+    const data = {
+      email,
+      password,
+    };
+
+    fetch(`${API_URL}/auth/`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      credentials: 'include',
+      headers: { 'content-type': 'application/json' },
+    })
+      .then(async (response) => {
+        const json = await (response.json() as Promise<TypedResponse>);
+
+        if (!response.ok) {
+          throw Error(json.message || response.statusText);
+        }
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const signout = () => {

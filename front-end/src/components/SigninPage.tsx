@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 interface ISignin {
-  signin: () => void;
+  signin: (username: string, password: string) => void;
 }
 
 function SigninPage({ signin }: ISignin) {
@@ -47,19 +47,55 @@ function SigninForm({ signin }: ISignin) {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.persist();
+    setFormData((prev) => ({
+      ...prev,
+      ...{
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
+
   // @ts-ignore
   const from = location.state?.from?.pathname || '/';
 
   return (
     <Box component="form" sx={{ mt: 1 }}>
-      <TextField required id="email" label="Email Adress" variant="outlined" margin="normal" fullWidth />
-      <TextField required id="password" label="Password" type="password" variant="outlined" margin="normal" fullWidth />
+      <TextField
+        required
+        id="email"
+        name="email"
+        label="Email Adress"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        value={formData.email}
+        onChange={changeInputHandler}
+      />
+      <TextField
+        required
+        id="password"
+        name="password"
+        label="Password"
+        type="password"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        value={formData.password}
+        onChange={changeInputHandler}
+      />
       <Button
         variant="contained"
         type="submit"
         sx={{ mt: 3 }}
         onClick={() => {
-          signin();
+          signin(formData.email, formData.password);
           navigate(from, { replace: true });
         }}
         fullWidth
