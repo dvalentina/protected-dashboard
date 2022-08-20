@@ -6,12 +6,11 @@ import { blue, grey } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 
 import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
+import { IDashboard } from '../../types';
 
-function ExamCard() {
+function ExamCard({ userId }: IDashboard) {
   const [result, setResult] = useState({ score: 0, max: 0, passed: false });
   const token = window.localStorage.getItem(JWT_TOKEN_NAME);
-
-  const userId = 1;
 
   useEffect(() => {
     fetch(`${API_URL}/results?userId=${userId}`, {

@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
-import { TypedResponse } from '../../types';
+import { ISignIn, TypedResponse } from '../../types';
 
-function SignInForm() {
+function SignInForm({ handleUserIdChange }: ISignIn) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -31,7 +31,15 @@ function SignInForm() {
           throw Error(json.message || response.statusText);
         }
 
-        window.localStorage.setItem(JWT_TOKEN_NAME, json.accessToken);
+        const { accessToken, userId } = json;
+
+        if (accessToken) {
+          window.localStorage.setItem(JWT_TOKEN_NAME, accessToken);
+        }
+
+        if (userId !== undefined) {
+          handleUserIdChange(userId);
+        }
       })
       .catch((error) => console.log(error.message));
   };
