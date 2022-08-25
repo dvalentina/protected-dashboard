@@ -6,21 +6,26 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
-import { ISignIn, TypedResponse } from '../../types';
+import { ISignIn, LocationProps, TypedResponse } from '../../types';
 
 function SignInForm({ handleUserIdChange }: ISignIn) {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation() as LocationProps;
 
-  const signIn = (email: string, password: string) => {
-    const data = {
-      email,
-      password,
-    };
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const from = location.state?.from?.pathname || '/';
+
+  const handleSignIn = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.persist();
 
     fetch(`${API_URL}/auth/`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify(formData),
       credentials: 'include',
       headers: { 'content-type': 'application/json' },
     })
@@ -41,15 +46,14 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
           handleUserIdChange(userId);
         }
       })
+      .then(() => {
+        navigate(from, { replace: true });
+      })
       .catch((error) => console.log(error.message));
   };
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
   const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     event.persist();
     setFormData((prev) => ({
       ...prev,
@@ -58,9 +62,6 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
       },
     }));
   };
-
-  // @ts-ignore
-  const from = location.state?.from?.pathname || '/';
 
   return (
     <Box component="form" sx={{ mt: 1 }}>
@@ -87,16 +88,7 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
         value={formData.password}
         onChange={changeInputHandler}
       />
-      <Button
-        variant="contained"
-        type="submit"
-        sx={{ mt: 3 }}
-        onClick={() => {
-          signIn(formData.email, formData.password);
-          navigate(from, { replace: true });
-        }}
-        fullWidth
-      >
+      <Button variant="contained" type="submit" sx={{ mt: 3 }} onClick={(e) => handleSignIn(e)} fullWidth>
         Sign In
       </Button>
     </Box>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -17,10 +17,10 @@ function App() {
   return (
     <CssBaseline>
       <Routes>
-        <Route path="/" element={<Link to="/exam">Find out your exam result!</Link>} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/signin" element={<SignInPage handleUserIdChange={handleUserIdChange} />} />
         <Route
-          path="/exam"
+          path="/dashboard"
           element={
             <RequireAuth>
               <Dashboard userId={userId} />

@@ -22,3 +22,13 @@ export interface ISignIn {
 export interface IDashboard {
   userId: number;
 }
+
+type LocationProps = {
+  state: {
+    from: Location;
+  };
+};
+
+interface IRequireAuth {
+  children: JSX.Element;
+}
