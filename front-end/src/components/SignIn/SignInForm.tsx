@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Box, Button, TextField } from '@mui/material';
 
 import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
 import { ISignIn, LocationProps, TypedResponse } from '../../types';

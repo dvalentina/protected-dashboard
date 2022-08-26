@@ -1,10 +1,8 @@
 import React from 'react';
 
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
+import { LockOutlined } from '@mui/icons-material';
+import { Avatar, Box, Typography } from '@mui/material';
 import { purple } from '@mui/material/colors';
-import Typography from '@mui/material/Typography';
 
 function SignInHeader() {
   return (
@@ -17,7 +15,7 @@ function SignInHeader() {
       }}
     >
       <Avatar sx={{ bgcolor: purple[500], m: 1 }}>
-        <LockOutlinedIcon />
+        <LockOutlined />
       </Avatar>
       <Typography variant="h5" component="h1">
         Sign in
