@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Protected Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a test task for a JS developer.
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
+Clone this repository to your computer.\
+In the project directory, run:
 
-### `npm start`
+```
+cd frontend
+npm i
+npm run start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+All requirements of the test task are met, namely:
 
-### `npm test`
+:white_check_mark: This is a Single-Page Application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+:white_check_mark: When user opens the page without authentication token, the Sign-in form gets displayed and Email/Password asked.
 
-### `npm run build`
+:white_check_mark: Upon sign in, the SPA authenticates the credentials using API. Error message appears if authentication didn't pass.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+:white_check_mark: If authorization was successful, user session get created and the Dashboard gets available.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+:white_check_mark: Secret data (Exam result) gets fetched from the backend API and shown on the ExamCard component.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+:white_check_mark: Page refresh/reload doesn't require re-authorization (In-browser session gets reused).
 
-### `npm run eject`
+:white_check_mark: User is able to log out using top-left menu. Auth token gets destroyed and user gets redirected to the authentication page.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Tools & Technologies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In this project, I used [React](https://reactjs.org/) library for building a user interface and [Create-React-App](https://create-react-app.dev/) to start building an SPA.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+For authorization I used [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library, which is an implementation of [JSON Web Tokes](https://www.rfc-editor.org/rfc/rfc7519).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+For server API mocking I used [json-server](https://github.com/typicode/json-server).
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

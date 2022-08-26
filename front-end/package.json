@@ -30,11 +30,8 @@
     "node": ">=8.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-mock": "json-server --port 8000 --watch ./src/server/db.json",
+    "start": "npm run start-auth & npm run start-client",
+    "start-client": "react-scripts start",
     "start-auth": "ts-node-esm ./src/server/server.ts"
   },
   "eslintConfig": {
