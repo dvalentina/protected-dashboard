@@ -8,6 +8,8 @@ import TextField from '@mui/material/TextField';
 import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
 import { ISignIn, LocationProps, TypedResponse } from '../../types';
 
+import ErrorAlert from './ErrorAlert';
+
 function SignInForm({ handleUserIdChange }: ISignIn) {
   const navigate = useNavigate();
   const location = useLocation() as LocationProps;
@@ -17,7 +19,14 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
     password: '',
   });
 
+  const [error, setError] = useState('');
+  const [alertVisible, setAlertVisible] = useState(false);
+
   const from = location.state?.from?.pathname || '/';
+
+  const hideAlert = () => {
+    setAlertVisible(false);
+  };
 
   const handleSignIn = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -49,7 +58,10 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
       .then(() => {
         navigate(from, { replace: true });
       })
-      .catch((error) => console.log(error.message));
+      .catch((err) => {
+        setError(err.message);
+        setAlertVisible(true);
+      });
   };
 
   const changeInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +77,7 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
 
   return (
     <Box component="form" sx={{ mt: 1 }}>
+      <ErrorAlert isVisible={alertVisible} handleClose={hideAlert} message={error} />
       <TextField
         required
         id="email"

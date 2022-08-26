@@ -23,12 +23,18 @@ export interface IDashboard {
   userId: number;
 }
 
-type LocationProps = {
+export type LocationProps = {
   state: {
     from: Location;
   };
 };
 
-interface IRequireAuth {
+export interface IRequireAuth {
   children: JSX.Element;
+}
+
+export interface IErrorAlert {
+  isVisible: boolean;
+  handleClose: () => void;
+  message: string;
 }

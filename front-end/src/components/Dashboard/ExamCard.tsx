@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { Skeleton } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { blue, grey } from '@mui/material/colors';
@@ -10,6 +11,7 @@ import { IDashboard } from '../../types';
 
 function ExamCard({ userId }: IDashboard) {
   const [result, setResult] = useState({ score: 0, max: 0, passed: false });
+  const [isLoading, setIsLoading] = useState(true);
   const token = window.localStorage.getItem(JWT_TOKEN_NAME);
 
   useEffect(() => {
@@ -20,10 +22,14 @@ function ExamCard({ userId }: IDashboard) {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         setResult({ score: data[0].score, max: data[0].max, passed: data[0].passed });
+        setIsLoading(false);
       });
   }, []);
+
+  function hasPassed() {
+    return result.passed ? 'PASSED' : 'FAILED';
+  }
 
   return (
     <Card sx={{ mt: 3, ml: 2, maxWidth: 275 }}>
@@ -35,10 +41,10 @@ function ExamCard({ userId }: IDashboard) {
           Your score is
         </Typography>
         <Typography component="p" variant="h4">
-          {`${result.score} of ${result.max}`}
+          {isLoading ? <Skeleton /> : `${result.score} of ${result.max}`}
         </Typography>
         <Typography component="p" variant="overline" color={grey[700]}>
-          {result.passed ? 'PASSED' : 'FAILED'}
+          {isLoading ? <Skeleton /> : hasPassed()}
         </Typography>
       </CardContent>
     </Card>
