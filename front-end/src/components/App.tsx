@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
 
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard/Dashboard';
+import SignInPage from './SignIn/SignInPage';
 import RequireAuth from './RequireAuth';
-import SigninPage from './SigninPage';
 
 function App() {
-  const [auth, setAuth] = useState(false);
+  const [userId, setUserId] = useState(-1);
 
-  const signin = () => {
-    setAuth(true);
-  };
-
-  const signout = () => {
-    setAuth(false);
+  const handleUserIdChange = (value: number) => {
+    setUserId(value);
   };
 
   return (
     <CssBaseline>
       <Routes>
-        <Route path="/" element={<Link to="/exam">Find out your exam result!</Link>} />
-        <Route path="/signin" element={<SigninPage signin={signin} />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/signin" element={<SignInPage handleUserIdChange={handleUserIdChange} />} />
         <Route
-          path="/exam"
+          path="/dashboard"
           element={
-            <RequireAuth auth={auth}>
-              <Dashboard signout={signout} />
+            <RequireAuth>
+              <Dashboard userId={userId} />
             </RequireAuth>
           }
         />
