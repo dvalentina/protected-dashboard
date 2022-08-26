@@ -20,7 +20,6 @@ function ExamCard({ userId }: IDashboard) {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         setResult({ score: data[0].score, max: data[0].max, passed: data[0].passed });
       });
   }, []);
