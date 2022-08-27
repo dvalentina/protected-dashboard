@@ -2,7 +2,7 @@ import fs from 'fs';
 import jsonServer from 'json-server';
 import jwt from 'jsonwebtoken';
 
-import { AuthForm, User } from '../types';
+import { AuthForm, IToken, User } from '../types';
 
 const server = jsonServer.create();
 const router = jsonServer.router('./src/server/db.json');
@@ -23,7 +23,7 @@ function createToken(payload: AuthForm) {
 // Verify the token
 function verifyToken(token: string) {
   return jwt.verify(token, SECRET_KEY, (err, decode) => {
-    if (decode !== undefined) return decode;
+    if (decode !== undefined) return decode as IToken;
 
     return err;
   });
@@ -51,6 +51,27 @@ server.post('/auth/', (req, res) => {
   const accessToken = createToken({ email, password });
 
   res.status(200).json({ accessToken, userId });
+});
+
+server.get('/users/me/', (req, res) => {
+  if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+    return;
+  }
+
+  const { email, password } = verifyToken(req.headers.authorization.split(' ')[1]) as unknown as IToken;
+  const userId = findUserId({ email, password });
+
+  if (userId === -1) {
+    const status = 404;
+
+    const message = 'User not found, try signing in again';
+
+    res.status(status).json({ status, message });
+
+    return;
+  }
+
+  res.status(200).json({ userId });
 });
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
