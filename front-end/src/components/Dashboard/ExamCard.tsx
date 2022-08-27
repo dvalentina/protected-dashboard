@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { Skeleton } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import { Card, CardContent, Skeleton, Typography } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
-import Typography from '@mui/material/Typography';
 
 import { API_URL, JWT_TOKEN_NAME } from '../../constants/constants';
 import { IDashboard } from '../../types';

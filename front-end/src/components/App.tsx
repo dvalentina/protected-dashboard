@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import CssBaseline from '@mui/material/CssBaseline';
+import { CssBaseline } from '@mui/material';
 
 import Dashboard from './Dashboard/Dashboard';
 import SignInPage from './SignIn/SignInPage';

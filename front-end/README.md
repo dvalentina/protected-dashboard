@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Protected Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a test task for a JS developer.
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
+Clone this repository to your computer. 
+> If you are not familiar with cloning GitHub repositories, check [GitHub Docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-### `npm start`
+In the Terminal, go to the cloned project directory, then run:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+cd frontend
+```
+Run following command to install all necessary dependencies:
+> If you don't have npm installed on your computer, follow [npm Docs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) tutorial to install it.
+```
+npm i
+```
+Then run this command to start the project (it will start both the client and the server side of the application):
+```
+npm run start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+After that, your browser should automatically open a new tab and display a Sign In page of this application. If it didn't happen, type
+```
+http://localhost:3000/
+```
+in the adress bar of your browser.
 
-### `npm test`
+You are now ready to explore the Protected Dashboard application!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Signing In
 
-### `npm run build`
+Since this is a test task and the backend is mocked, you can find an open user database in
+```
+frontend/server/users.json
+```
+with the information about the existing users.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+You can then use this information (the email and the corresponding password) to successfully sign in to Protected Dashboard.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After successful signing in, you will see the Dashboard page with exam results for chosen user.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Task
 
-### `npm run eject`
+All requirements of the test task are met, namely:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+:heavy_check_mark: This is a Single-Page Application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+:heavy_check_mark: When user opens the page without an authentication token, the Sign-in form gets displayed and Email/Password asked.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+:heavy_check_mark: Upon sign in, the SPA authenticates the credentials using API. Error message appears if authentication didn't pass.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+:heavy_check_mark: If authorization was successful, user session get created and the Dashboard gets available.
 
-## Learn More
+:heavy_check_mark: Secret data (Exam result) gets fetched from the backend API and shown on the ExamCard component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+:heavy_check_mark: Page refresh/reload doesn't require re-authorization (In-browser session gets reused).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+:heavy_check_mark: User is able to log out using top-left menu. Auth token gets destroyed and user gets redirected to the authentication page.
 
-### Code Splitting
+## Tools & Technologies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+In this project, I used [React](https://reactjs.org/) library for building a user interface and [Create-React-App](https://create-react-app.dev/) to start building an SPA.
 
-### Analyzing the Bundle Size
+The application's layout was implemented with [Material UI](https://mui.com/material-ui/getting-started/overview/) components.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For authorization I used [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library, which is an implementation of [JSON Web Tokens](https://www.rfc-editor.org/rfc/rfc7519).
 
-### Making a Progressive Web App
+With [json-server](https://github.com/typicode/json-server), I was able to fake a server API for this project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+[React Router](https://reactrouter.com/en/main) helped to manage the application's routes.
 
-### Advanced Configuration
+The application runs on [Node.js](https://nodejs.org/en/) environment, and [npm](https://www.npmjs.com/) manages its packages.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+For strong typing of JavaScript, I used [TypeScript](https://www.typescriptlang.org/).
 
-### Deployment
+To maintain the quality and the uniformity of the code, I relied on the help of [eslint](https://eslint.org/).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For version control, I used [Git](https://git-scm.com/) & [GitHub](https://github.com/).

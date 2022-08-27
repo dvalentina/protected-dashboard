@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import MenuIcon from '@mui/icons-material/Menu';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { Menu as MenuIcon } from '@mui/icons-material';
+import { AppBar, Box, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 
 import { JWT_TOKEN_NAME } from '../../constants/constants';
 
