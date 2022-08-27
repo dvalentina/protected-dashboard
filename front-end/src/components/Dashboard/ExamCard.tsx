@@ -9,20 +9,30 @@ import { IDashboard } from '../../types';
 function ExamCard({ userId }: IDashboard) {
   const [result, setResult] = useState({ score: 0, max: 0, passed: false });
   const [isLoading, setIsLoading] = useState(true);
-  const token = window.localStorage.getItem(JWT_TOKEN_NAME);
 
   useEffect(() => {
-    fetch(`${API_URL}/results?userId=${userId}`, {
-      method: 'GET',
-      credentials: 'include',
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setResult({ score: data[0].score, max: data[0].max, passed: data[0].passed });
-        setIsLoading(false);
-      });
-  }, []);
+    if (userId !== -1) {
+      const token = window.localStorage.getItem(JWT_TOKEN_NAME);
+
+      fetch(`${API_URL}/results?userId=${userId}`, {
+        method: 'GET',
+        credentials: 'include',
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((resp) => resp.json())
+        .then((resp) => {
+          const data = resp[0];
+
+          if (data === undefined) {
+            throw Error('No exam results found');
+          }
+
+          setResult({ score: data.score, max: data.max, passed: data.passed });
+          setIsLoading(false);
+        })
+        .catch((err) => console.log(err.message));
+    }
+  }, [userId]);
 
   function hasPassed() {
     return result.passed ? 'PASSED' : 'FAILED';

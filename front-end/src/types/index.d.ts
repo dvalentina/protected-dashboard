@@ -38,3 +38,10 @@ export interface IErrorAlert {
   handleClose: () => void;
   message: string;
 }
+
+export interface IToken {
+  email: string;
+  password: string;
+  iat: number;
+  exp: number;
+}
