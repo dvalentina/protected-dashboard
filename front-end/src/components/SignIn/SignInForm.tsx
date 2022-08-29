@@ -74,13 +74,13 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
   };
 
   return (
-    <Box component="form" sx={{ mt: 1 }}>
+    <Box component="form" aria-label="form" sx={{ mt: 1 }}>
       <ErrorAlert isVisible={alertVisible} handleClose={hideAlert} message={error} />
       <TextField
         required
         id="email"
         name="email"
-        label="Email Adress"
+        label="Email"
         variant="outlined"
         margin="normal"
         fullWidth
@@ -88,6 +88,7 @@ function SignInForm({ handleUserIdChange }: ISignIn) {
         onChange={changeInputHandler}
       />
       <TextField
+        area-label="password"
         required
         id="password"
         name="password"

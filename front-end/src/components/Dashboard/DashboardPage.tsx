@@ -5,7 +5,7 @@ import { IDashboard } from '../../types';
 import DashboardHeader from './DashboardHeader';
 import ExamCard from './ExamCard';
 
-function Dashboard({ userId }: IDashboard) {
+function DashboardPage({ userId }: IDashboard) {
   return (
     <>
       <DashboardHeader />
@@ -14,4 +14,4 @@ function Dashboard({ userId }: IDashboard) {
   );
 }
 
-export default Dashboard;
+export default DashboardPage;

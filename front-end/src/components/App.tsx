@@ -6,7 +6,7 @@ import { CssBaseline } from '@mui/material';
 import { API_URL, JWT_TOKEN_NAME } from '../constants/constants';
 import { TypedResponse } from '../types';
 
-import Dashboard from './Dashboard/Dashboard';
+import DashboardPage from './Dashboard/DashboardPage';
 import SignInPage from './SignIn/SignInPage';
 import RequireAuth from './RequireAuth';
 
@@ -56,7 +56,7 @@ function App() {
           path="/dashboard"
           element={
             <RequireAuth>
-              <Dashboard userId={userId} />
+              <DashboardPage userId={userId} />
             </RequireAuth>
           }
         />
