@@ -7,11 +7,8 @@ This project is a test task for a JS developer.
 Clone this repository to your computer. 
 > If you are not familiar with cloning GitHub repositories, check [GitHub Docs](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-In the Terminal, go to the cloned project directory, then run:
+In the Terminal, go to the cloned project directory.
 
-```
-cd frontend
-```
 Run following command to install all necessary dependencies:
 > If you don't have npm installed on your computer, follow [npm Docs](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) tutorial to install it.
 ```
@@ -34,7 +31,7 @@ You are now ready to explore the Protected Dashboard application!
 
 Since this is a test task and the backend is mocked, you can find an open user database in
 ```
-frontend/server/users.json
+src/server/users.json
 ```
 with the information about the existing users.
 
@@ -44,11 +41,11 @@ After successful signing in, you will see the Dashboard page with exam results f
 
 ## Tests
 
-This application has its tests in:
+This application has its tests following directory:
 ```
-frontend/src/tests
+src/tests
 ```
-To start tests, run this command inside frontend directory:
+To start tests, run this command:
 ```
 npm run test
 ```
