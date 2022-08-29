@@ -42,6 +42,17 @@ You can then use this information (the email and the corresponding password) to 
 
 After successful signing in, you will see the Dashboard page with exam results for chosen user.
 
+## Tests
+
+This application has its tests in:
+```
+frontend/src/tests
+```
+To start tests, run this command inside frontend directory:
+```
+npm run test
+```
+
 ## Task
 
 All requirements of the test task are met, namely:
@@ -68,9 +79,11 @@ The application's layout was implemented with [Material UI](https://mui.com/mate
 
 For authorization I used [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library, which is an implementation of [JSON Web Tokens](https://www.rfc-editor.org/rfc/rfc7519).
 
+[React Router](https://reactrouter.com/en/main) helped to manage the application's routes.
+
 With [json-server](https://github.com/typicode/json-server), I was able to fake a server API for this project.
 
-[React Router](https://reactrouter.com/en/main) helped to manage the application's routes.
+Tests were written using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
 The application runs on [Node.js](https://nodejs.org/en/) environment, and [npm](https://www.npmjs.com/) manages its packages.
 
