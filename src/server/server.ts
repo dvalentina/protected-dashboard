@@ -1,3 +1,4 @@
+import cors, { CorsOptions } from 'cors';
 import fs from 'fs';
 import jsonServer from 'json-server';
 import jwt from 'jsonwebtoken';
@@ -11,6 +12,21 @@ const userdb = JSON.parse(fs.readFileSync('./src/server/users.json', 'UTF-8' as 
 
 server.use(jsonServer.defaults());
 server.use(jsonServer.bodyParser);
+
+const domainList = ['http://localhost:3000'];
+
+const corsConfig: CorsOptions = {
+  origin(origin, callback) {
+    if (origin && domainList.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+server.use(cors(corsConfig));
 
 const SECRET_KEY = '123456789';
 const expiresIn = '1h';

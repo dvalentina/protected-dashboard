@@ -15,6 +15,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
     "json-server": "^0.17.0",
     "jsonwebtoken": "^8.5.1",
     "react": "^18.2.0",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/cors": "^2.8.15",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
