@@ -32,7 +32,7 @@
     "start": "concurrently --names 'SERVER,CLIENT' --prefix-colors 'green,blue' --kill-others 'npm run start-server' 'npm run start-client'",
     "start-client": "react-scripts start",
     "start-server": "node --loader ts-node/esm ./src/server/server.ts",
-    "test": "npm run start-server & react-scripts test --coverage"
+    "test": "concurrently --names 'SERVER,TESTS' --prefix-colors 'green,magenta' --kill-others 'npm run start-server' 'CI=true react-scripts test --env=jsdom --coverage'"
   },
   "eslintConfig": {
     "extends": [

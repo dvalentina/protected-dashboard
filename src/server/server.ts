@@ -13,10 +13,12 @@ const userdb = JSON.parse(fs.readFileSync('./src/server/users.json', 'UTF-8' as 
 server.use(jsonServer.defaults());
 server.use(jsonServer.bodyParser);
 
-const domainList = ['http://localhost:3000'];
+const domainList = ['http://localhost:3000', 'http://localhost'];
 
 const corsConfig: CorsOptions = {
   origin(origin, callback) {
+    console.log('ORIGIN', origin);
+
     if (origin && domainList.includes(origin)) {
       callback(null, true);
     } else {
