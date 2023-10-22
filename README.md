@@ -1,6 +1,11 @@
 # Protected Dashboard
 
-This project is a test task for a JS developer.
+This project is a test assignment for a JS Developer position.
+
+It is an SPA which uses JWT Token for user authentication and authorization and shows a secret page with exam results from a database for an authorized user.\
+For more details, [go to Task section](#task).
+
+![demo](demo.gif)
 
 ## Getting started
 
@@ -29,7 +34,7 @@ You are now ready to explore the Protected Dashboard application!
 
 ## Signing In
 
-Since this is a test task and the backend is mocked, you can find an open user database in
+Since this is a test task and the backend is mocked, you can find an open user database [here](/src/server/users.json) or locally in
 ```
 src/server/users.json
 ```
@@ -37,7 +42,7 @@ with the information about the existing users.
 
 You can then use this information (the email and the corresponding password) to successfully sign in to Protected Dashboard.
 
-After successful signing in, you will see the Dashboard page with exam results for chosen user.
+After successful signing in, you will see the Dashboard page with exam results for the chosen user.
 
 ## Tests
 
@@ -52,21 +57,21 @@ npm run test
 
 ## Task
 
-All requirements of the test task are met, namely:
+All requirements of the test assignment are met, namely:
 
-:heavy_check_mark: This is a Single-Page Application.
+- [x] This is a Single-Page Application.
 
-:heavy_check_mark: When user opens the page without an authentication token, the Sign-in form gets displayed and Email/Password asked.
+- [x] When user opens the page without an authentication token, the Sign-in form gets displayed and Email/Password asked.
 
-:heavy_check_mark: Upon sign in, the SPA authenticates the credentials using API. Error message appears if authentication didn't pass.
+- [x] Upon sign in, the SPA authenticates the credentials using API. Error message appears if authentication didn't pass.
 
-:heavy_check_mark: If authorization was successful, user session get created and the Dashboard gets available.
+- [x] If authorization was successful, user session get created and the Dashboard gets available.
 
-:heavy_check_mark: Secret data (Exam result) gets fetched from the backend API and shown on the ExamCard component.
+- [x] Secret data (Exam result) gets fetched from the backend API and shown on the ExamCard component.
 
-:heavy_check_mark: Page refresh/reload doesn't require re-authorization (In-browser session gets reused).
+- [x] Page refresh/reload doesn't require re-authorization (In-browser session gets reused).
 
-:heavy_check_mark: User is able to log out using top-left menu. Auth token gets destroyed and user gets redirected to the authentication page.
+- [x] User is able to log out using top-left menu. Auth token gets destroyed and user gets redirected to the authentication page.
 
 ## Tools & Technologies
 
